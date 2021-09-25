@@ -10,8 +10,8 @@ start_pose {
 }
 
 door_pose {
-  x: 3.6
-  y: 3
+  x: 3.4
+  y: 2.7
   z: 0
 
   roll:  0
@@ -20,8 +20,8 @@ door_pose {
 }
 
 tv_pose {
-  x: 6.14
-  y: 4.45
+  x: 0
+  y: 3.2
   z: 0
 
   roll:  0
@@ -31,7 +31,7 @@ tv_pose {
 
 robot {
   robot_name: "huanyu"
-  goal_pose_topic: "/huanyu/move_base_simple/goal2"
+  goal_pose_topic: "/huanyu/move_base_simple/goal"
   goal_frame_id: "huanyu/map"
 
   initial_pose_topic: "/huanyu/initialpose"

@@ -22,7 +22,7 @@ class UnitControl
     UnitControl(group_formation::Robot robotConfig)
     {
       ros::NodeHandle nh;
-      pub_ = nh.advertise<geometry_msgs::PoseStamped>(robotConfig.goal_pose_topic(), 1);
+      pub_ = nh.advertise<geometry_msgs::PoseStamped>(robotConfig.goal_pose_topic(), 0);
       
       finalGoal_.header.frame_id = robotConfig.goal_frame_id();
     }
