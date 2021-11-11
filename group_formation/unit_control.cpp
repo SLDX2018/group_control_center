@@ -16,7 +16,7 @@ int main(int argc, char **argv)
   roborts_common::ReadProtoFromTextFile(full_path, &gc);
 
   tf::Transform relativePosition;
-  group_formation::UnitControl unitTest("/huanyu/move_base_simple/goal2", relativePosition);
+  group_formation::UnitControl unitTest("/sldx/move_base_simple/goal2", relativePosition);
 
 
   group_formation::Pose st;
