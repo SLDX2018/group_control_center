@@ -27,6 +27,9 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* Robot_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   Robot_reflection_ = NULL;
+const ::google::protobuf::Descriptor* Formation_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  Formation_reflection_ = NULL;
 const ::google::protobuf::Descriptor* GroupConfig_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   GroupConfig_reflection_ = NULL;
@@ -80,12 +83,26 @@ void protobuf_AssignDesc_group_5fformation_2eproto() {
       sizeof(Robot),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Robot, _internal_metadata_),
       -1);
-  GroupConfig_descriptor_ = file->message_type(2);
-  static const int GroupConfig_offsets_[4] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GroupConfig, start_pose_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GroupConfig, door_pose_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GroupConfig, tv_pose_),
+  Formation_descriptor_ = file->message_type(2);
+  static const int Formation_offsets_[1] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Formation, pose_),
+  };
+  Formation_reflection_ =
+    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
+      Formation_descriptor_,
+      Formation::default_instance_,
+      Formation_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Formation, _has_bits_[0]),
+      -1,
+      -1,
+      sizeof(Formation),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Formation, _internal_metadata_),
+      -1);
+  GroupConfig_descriptor_ = file->message_type(3);
+  static const int GroupConfig_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GroupConfig, robot_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GroupConfig, formation_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GroupConfig, goal_),
   };
   GroupConfig_reflection_ =
     ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
@@ -116,6 +133,8 @@ void protobuf_RegisterTypes(const ::std::string&) {
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       Robot_descriptor_, &Robot::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+      Formation_descriptor_, &Formation::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       GroupConfig_descriptor_, &GroupConfig::default_instance());
 }
 
@@ -126,6 +145,8 @@ void protobuf_ShutdownFile_group_5fformation_2eproto() {
   delete Pose_reflection_;
   delete Robot::default_instance_;
   delete Robot_reflection_;
+  delete Formation::default_instance_;
+  delete Formation_reflection_;
   delete GroupConfig::default_instance_;
   delete GroupConfig_reflection_;
 }
@@ -144,19 +165,21 @@ void protobuf_AddDesc_group_5fformation_2eproto() {
     "\001(\002\"\224\001\n\005Robot\022\022\n\nrobot_name\030\001 \001(\t\022\027\n\017goa"
     "l_pose_topic\030\002 \001(\t\022\025\n\rgoal_frame_id\030\003 \001("
     "\t\022\032\n\022initial_pose_topic\030\004 \001(\t\022+\n\014initial"
-    "_pose\030\005 \001(\0132\025.group_formation.Pose\"\261\001\n\013G"
-    "roupConfig\022)\n\nstart_pose\030\001 \001(\0132\025.group_f"
-    "ormation.Pose\022(\n\tdoor_pose\030\002 \001(\0132\025.group"
-    "_formation.Pose\022&\n\007tv_pose\030\003 \001(\0132\025.group"
-    "_formation.Pose\022%\n\005robot\030\004 \003(\0132\026.group_f"
-    "ormation.Robot", 454);
+    "_pose\030\005 \001(\0132\025.group_formation.Pose\"0\n\tFo"
+    "rmation\022#\n\004pose\030\001 \003(\0132\025.group_formation."
+    "Pose\"\210\001\n\013GroupConfig\022%\n\005robot\030\001 \003(\0132\026.gr"
+    "oup_formation.Robot\022-\n\tformation\030\002 \003(\0132\032"
+    ".group_formation.Formation\022#\n\004goal\030\003 \003(\013"
+    "2\025.group_formation.Pose", 463);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "group_formation.proto", &protobuf_RegisterTypes);
   Pose::default_instance_ = new Pose();
   Robot::default_instance_ = new Robot();
+  Formation::default_instance_ = new Formation();
   GroupConfig::default_instance_ = new GroupConfig();
   Pose::default_instance_->InitAsDefaultInstance();
   Robot::default_instance_->InitAsDefaultInstance();
+  Formation::default_instance_->InitAsDefaultInstance();
   GroupConfig::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_group_5fformation_2eproto);
 }
@@ -1505,10 +1528,287 @@ void Robot::set_allocated_initial_pose(::group_formation::Pose* initial_pose) {
 // ===================================================================
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int GroupConfig::kStartPoseFieldNumber;
-const int GroupConfig::kDoorPoseFieldNumber;
-const int GroupConfig::kTvPoseFieldNumber;
+const int Formation::kPoseFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+Formation::Formation()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:group_formation.Formation)
+}
+
+void Formation::InitAsDefaultInstance() {
+}
+
+Formation::Formation(const Formation& from)
+  : ::google::protobuf::Message(),
+    _internal_metadata_(NULL) {
+  SharedCtor();
+  MergeFrom(from);
+  // @@protoc_insertion_point(copy_constructor:group_formation.Formation)
+}
+
+void Formation::SharedCtor() {
+  _cached_size_ = 0;
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+}
+
+Formation::~Formation() {
+  // @@protoc_insertion_point(destructor:group_formation.Formation)
+  SharedDtor();
+}
+
+void Formation::SharedDtor() {
+  if (this != default_instance_) {
+  }
+}
+
+void Formation::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* Formation::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return Formation_descriptor_;
+}
+
+const Formation& Formation::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_group_5fformation_2eproto();
+  return *default_instance_;
+}
+
+Formation* Formation::default_instance_ = NULL;
+
+Formation* Formation::New(::google::protobuf::Arena* arena) const {
+  Formation* n = new Formation;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void Formation::Clear() {
+// @@protoc_insertion_point(message_clear_start:group_formation.Formation)
+  pose_.Clear();
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+  if (_internal_metadata_.have_unknown_fields()) {
+    mutable_unknown_fields()->Clear();
+  }
+}
+
+bool Formation::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:group_formation.Formation)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // repeated .group_formation.Pose pose = 1;
+      case 1: {
+        if (tag == 10) {
+          DO_(input->IncrementRecursionDepth());
+         parse_loop_pose:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtualNoRecursionDepth(
+                input, add_pose()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(10)) goto parse_loop_pose;
+        input->UnsafeDecrementRecursionDepth();
+        if (input->ExpectAtEnd()) goto success;
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:group_formation.Formation)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:group_formation.Formation)
+  return false;
+#undef DO_
+}
+
+void Formation::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:group_formation.Formation)
+  // repeated .group_formation.Pose pose = 1;
+  for (unsigned int i = 0, n = this->pose_size(); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      1, this->pose(i), output);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:group_formation.Formation)
+}
+
+::google::protobuf::uint8* Formation::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:group_formation.Formation)
+  // repeated .group_formation.Pose pose = 1;
+  for (unsigned int i = 0, n = this->pose_size(); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        1, this->pose(i), false, target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:group_formation.Formation)
+  return target;
+}
+
+int Formation::ByteSize() const {
+// @@protoc_insertion_point(message_byte_size_start:group_formation.Formation)
+  int total_size = 0;
+
+  // repeated .group_formation.Pose pose = 1;
+  total_size += 1 * this->pose_size();
+  for (int i = 0; i < this->pose_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->pose(i));
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void Formation::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:group_formation.Formation)
+  if (GOOGLE_PREDICT_FALSE(&from == this)) {
+    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
+  }
+  const Formation* source = 
+      ::google::protobuf::internal::DynamicCastToGenerated<const Formation>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:group_formation.Formation)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:group_formation.Formation)
+    MergeFrom(*source);
+  }
+}
+
+void Formation::MergeFrom(const Formation& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:group_formation.Formation)
+  if (GOOGLE_PREDICT_FALSE(&from == this)) {
+    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
+  }
+  pose_.MergeFrom(from.pose_);
+  if (from._internal_metadata_.have_unknown_fields()) {
+    mutable_unknown_fields()->MergeFrom(from.unknown_fields());
+  }
+}
+
+void Formation::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:group_formation.Formation)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void Formation::CopyFrom(const Formation& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:group_formation.Formation)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Formation::IsInitialized() const {
+
+  return true;
+}
+
+void Formation::Swap(Formation* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void Formation::InternalSwap(Formation* other) {
+  pose_.UnsafeArenaSwap(&other->pose_);
+  std::swap(_has_bits_[0], other->_has_bits_[0]);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata Formation::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = Formation_descriptor_;
+  metadata.reflection = Formation_reflection_;
+  return metadata;
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// Formation
+
+// repeated .group_formation.Pose pose = 1;
+int Formation::pose_size() const {
+  return pose_.size();
+}
+void Formation::clear_pose() {
+  pose_.Clear();
+}
+const ::group_formation::Pose& Formation::pose(int index) const {
+  // @@protoc_insertion_point(field_get:group_formation.Formation.pose)
+  return pose_.Get(index);
+}
+::group_formation::Pose* Formation::mutable_pose(int index) {
+  // @@protoc_insertion_point(field_mutable:group_formation.Formation.pose)
+  return pose_.Mutable(index);
+}
+::group_formation::Pose* Formation::add_pose() {
+  // @@protoc_insertion_point(field_add:group_formation.Formation.pose)
+  return pose_.Add();
+}
+::google::protobuf::RepeatedPtrField< ::group_formation::Pose >*
+Formation::mutable_pose() {
+  // @@protoc_insertion_point(field_mutable_list:group_formation.Formation.pose)
+  return &pose_;
+}
+const ::google::protobuf::RepeatedPtrField< ::group_formation::Pose >&
+Formation::pose() const {
+  // @@protoc_insertion_point(field_list:group_formation.Formation.pose)
+  return pose_;
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int GroupConfig::kRobotFieldNumber;
+const int GroupConfig::kFormationFieldNumber;
+const int GroupConfig::kGoalFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 GroupConfig::GroupConfig()
@@ -1518,9 +1818,6 @@ GroupConfig::GroupConfig()
 }
 
 void GroupConfig::InitAsDefaultInstance() {
-  start_pose_ = const_cast< ::group_formation::Pose*>(&::group_formation::Pose::default_instance());
-  door_pose_ = const_cast< ::group_formation::Pose*>(&::group_formation::Pose::default_instance());
-  tv_pose_ = const_cast< ::group_formation::Pose*>(&::group_formation::Pose::default_instance());
 }
 
 GroupConfig::GroupConfig(const GroupConfig& from)
@@ -1533,9 +1830,6 @@ GroupConfig::GroupConfig(const GroupConfig& from)
 
 void GroupConfig::SharedCtor() {
   _cached_size_ = 0;
-  start_pose_ = NULL;
-  door_pose_ = NULL;
-  tv_pose_ = NULL;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -1546,9 +1840,6 @@ GroupConfig::~GroupConfig() {
 
 void GroupConfig::SharedDtor() {
   if (this != default_instance_) {
-    delete start_pose_;
-    delete door_pose_;
-    delete tv_pose_;
   }
 }
 
@@ -1579,18 +1870,9 @@ GroupConfig* GroupConfig::New(::google::protobuf::Arena* arena) const {
 
 void GroupConfig::Clear() {
 // @@protoc_insertion_point(message_clear_start:group_formation.GroupConfig)
-  if (_has_bits_[0 / 32] & 7u) {
-    if (has_start_pose()) {
-      if (start_pose_ != NULL) start_pose_->::group_formation::Pose::Clear();
-    }
-    if (has_door_pose()) {
-      if (door_pose_ != NULL) door_pose_->::group_formation::Pose::Clear();
-    }
-    if (has_tv_pose()) {
-      if (tv_pose_ != NULL) tv_pose_->::group_formation::Pose::Clear();
-    }
-  }
   robot_.Clear();
+  formation_.Clear();
+  goal_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   if (_internal_metadata_.have_unknown_fields()) {
     mutable_unknown_fields()->Clear();
@@ -1607,48 +1889,9 @@ bool GroupConfig::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional .group_formation.Pose start_pose = 1;
+      // repeated .group_formation.Robot robot = 1;
       case 1: {
         if (tag == 10) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-               input, mutable_start_pose()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(18)) goto parse_door_pose;
-        break;
-      }
-
-      // optional .group_formation.Pose door_pose = 2;
-      case 2: {
-        if (tag == 18) {
-         parse_door_pose:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-               input, mutable_door_pose()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(26)) goto parse_tv_pose;
-        break;
-      }
-
-      // optional .group_formation.Pose tv_pose = 3;
-      case 3: {
-        if (tag == 26) {
-         parse_tv_pose:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-               input, mutable_tv_pose()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(34)) goto parse_robot;
-        break;
-      }
-
-      // repeated .group_formation.Robot robot = 4;
-      case 4: {
-        if (tag == 34) {
-         parse_robot:
           DO_(input->IncrementRecursionDepth());
          parse_loop_robot:
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtualNoRecursionDepth(
@@ -1656,7 +1899,39 @@ bool GroupConfig::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(34)) goto parse_loop_robot;
+        if (input->ExpectTag(10)) goto parse_loop_robot;
+        if (input->ExpectTag(18)) goto parse_loop_formation;
+        input->UnsafeDecrementRecursionDepth();
+        break;
+      }
+
+      // repeated .group_formation.Formation formation = 2;
+      case 2: {
+        if (tag == 18) {
+          DO_(input->IncrementRecursionDepth());
+         parse_loop_formation:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtualNoRecursionDepth(
+                input, add_formation()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(18)) goto parse_loop_formation;
+        if (input->ExpectTag(26)) goto parse_loop_goal;
+        input->UnsafeDecrementRecursionDepth();
+        break;
+      }
+
+      // repeated .group_formation.Pose goal = 3;
+      case 3: {
+        if (tag == 26) {
+          DO_(input->IncrementRecursionDepth());
+         parse_loop_goal:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtualNoRecursionDepth(
+                input, add_goal()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(26)) goto parse_loop_goal;
         input->UnsafeDecrementRecursionDepth();
         if (input->ExpectAtEnd()) goto success;
         break;
@@ -1687,28 +1962,22 @@ failure:
 void GroupConfig::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:group_formation.GroupConfig)
-  // optional .group_formation.Pose start_pose = 1;
-  if (has_start_pose()) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      1, *this->start_pose_, output);
-  }
-
-  // optional .group_formation.Pose door_pose = 2;
-  if (has_door_pose()) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      2, *this->door_pose_, output);
-  }
-
-  // optional .group_formation.Pose tv_pose = 3;
-  if (has_tv_pose()) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      3, *this->tv_pose_, output);
-  }
-
-  // repeated .group_formation.Robot robot = 4;
+  // repeated .group_formation.Robot robot = 1;
   for (unsigned int i = 0, n = this->robot_size(); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      4, this->robot(i), output);
+      1, this->robot(i), output);
+  }
+
+  // repeated .group_formation.Formation formation = 2;
+  for (unsigned int i = 0, n = this->formation_size(); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      2, this->formation(i), output);
+  }
+
+  // repeated .group_formation.Pose goal = 3;
+  for (unsigned int i = 0, n = this->goal_size(); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      3, this->goal(i), output);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -1721,32 +1990,25 @@ void GroupConfig::SerializeWithCachedSizes(
 ::google::protobuf::uint8* GroupConfig::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:group_formation.GroupConfig)
-  // optional .group_formation.Pose start_pose = 1;
-  if (has_start_pose()) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageNoVirtualToArray(
-        1, *this->start_pose_, false, target);
-  }
-
-  // optional .group_formation.Pose door_pose = 2;
-  if (has_door_pose()) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageNoVirtualToArray(
-        2, *this->door_pose_, false, target);
-  }
-
-  // optional .group_formation.Pose tv_pose = 3;
-  if (has_tv_pose()) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageNoVirtualToArray(
-        3, *this->tv_pose_, false, target);
-  }
-
-  // repeated .group_formation.Robot robot = 4;
+  // repeated .group_formation.Robot robot = 1;
   for (unsigned int i = 0, n = this->robot_size(); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
-        4, this->robot(i), false, target);
+        1, this->robot(i), false, target);
+  }
+
+  // repeated .group_formation.Formation formation = 2;
+  for (unsigned int i = 0, n = this->formation_size(); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        2, this->formation(i), false, target);
+  }
+
+  // repeated .group_formation.Pose goal = 3;
+  for (unsigned int i = 0, n = this->goal_size(); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        3, this->goal(i), false, target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -1761,35 +2023,28 @@ int GroupConfig::ByteSize() const {
 // @@protoc_insertion_point(message_byte_size_start:group_formation.GroupConfig)
   int total_size = 0;
 
-  if (_has_bits_[0 / 32] & 7u) {
-    // optional .group_formation.Pose start_pose = 1;
-    if (has_start_pose()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-          *this->start_pose_);
-    }
-
-    // optional .group_formation.Pose door_pose = 2;
-    if (has_door_pose()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-          *this->door_pose_);
-    }
-
-    // optional .group_formation.Pose tv_pose = 3;
-    if (has_tv_pose()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-          *this->tv_pose_);
-    }
-
-  }
-  // repeated .group_formation.Robot robot = 4;
+  // repeated .group_formation.Robot robot = 1;
   total_size += 1 * this->robot_size();
   for (int i = 0; i < this->robot_size(); i++) {
     total_size +=
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
         this->robot(i));
+  }
+
+  // repeated .group_formation.Formation formation = 2;
+  total_size += 1 * this->formation_size();
+  for (int i = 0; i < this->formation_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->formation(i));
+  }
+
+  // repeated .group_formation.Pose goal = 3;
+  total_size += 1 * this->goal_size();
+  for (int i = 0; i < this->goal_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->goal(i));
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -1826,17 +2081,8 @@ void GroupConfig::MergeFrom(const GroupConfig& from) {
     ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
   }
   robot_.MergeFrom(from.robot_);
-  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from.has_start_pose()) {
-      mutable_start_pose()->::group_formation::Pose::MergeFrom(from.start_pose());
-    }
-    if (from.has_door_pose()) {
-      mutable_door_pose()->::group_formation::Pose::MergeFrom(from.door_pose());
-    }
-    if (from.has_tv_pose()) {
-      mutable_tv_pose()->::group_formation::Pose::MergeFrom(from.tv_pose());
-    }
-  }
+  formation_.MergeFrom(from.formation_);
+  goal_.MergeFrom(from.goal_);
   if (from._internal_metadata_.have_unknown_fields()) {
     mutable_unknown_fields()->MergeFrom(from.unknown_fields());
   }
@@ -1866,10 +2112,9 @@ void GroupConfig::Swap(GroupConfig* other) {
   InternalSwap(other);
 }
 void GroupConfig::InternalSwap(GroupConfig* other) {
-  std::swap(start_pose_, other->start_pose_);
-  std::swap(door_pose_, other->door_pose_);
-  std::swap(tv_pose_, other->tv_pose_);
   robot_.UnsafeArenaSwap(&other->robot_);
+  formation_.UnsafeArenaSwap(&other->formation_);
+  goal_.UnsafeArenaSwap(&other->goal_);
   std::swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
@@ -1886,139 +2131,7 @@ void GroupConfig::InternalSwap(GroupConfig* other) {
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // GroupConfig
 
-// optional .group_formation.Pose start_pose = 1;
-bool GroupConfig::has_start_pose() const {
-  return (_has_bits_[0] & 0x00000001u) != 0;
-}
-void GroupConfig::set_has_start_pose() {
-  _has_bits_[0] |= 0x00000001u;
-}
-void GroupConfig::clear_has_start_pose() {
-  _has_bits_[0] &= ~0x00000001u;
-}
-void GroupConfig::clear_start_pose() {
-  if (start_pose_ != NULL) start_pose_->::group_formation::Pose::Clear();
-  clear_has_start_pose();
-}
-const ::group_formation::Pose& GroupConfig::start_pose() const {
-  // @@protoc_insertion_point(field_get:group_formation.GroupConfig.start_pose)
-  return start_pose_ != NULL ? *start_pose_ : *default_instance_->start_pose_;
-}
-::group_formation::Pose* GroupConfig::mutable_start_pose() {
-  set_has_start_pose();
-  if (start_pose_ == NULL) {
-    start_pose_ = new ::group_formation::Pose;
-  }
-  // @@protoc_insertion_point(field_mutable:group_formation.GroupConfig.start_pose)
-  return start_pose_;
-}
-::group_formation::Pose* GroupConfig::release_start_pose() {
-  // @@protoc_insertion_point(field_release:group_formation.GroupConfig.start_pose)
-  clear_has_start_pose();
-  ::group_formation::Pose* temp = start_pose_;
-  start_pose_ = NULL;
-  return temp;
-}
-void GroupConfig::set_allocated_start_pose(::group_formation::Pose* start_pose) {
-  delete start_pose_;
-  start_pose_ = start_pose;
-  if (start_pose) {
-    set_has_start_pose();
-  } else {
-    clear_has_start_pose();
-  }
-  // @@protoc_insertion_point(field_set_allocated:group_formation.GroupConfig.start_pose)
-}
-
-// optional .group_formation.Pose door_pose = 2;
-bool GroupConfig::has_door_pose() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
-}
-void GroupConfig::set_has_door_pose() {
-  _has_bits_[0] |= 0x00000002u;
-}
-void GroupConfig::clear_has_door_pose() {
-  _has_bits_[0] &= ~0x00000002u;
-}
-void GroupConfig::clear_door_pose() {
-  if (door_pose_ != NULL) door_pose_->::group_formation::Pose::Clear();
-  clear_has_door_pose();
-}
-const ::group_formation::Pose& GroupConfig::door_pose() const {
-  // @@protoc_insertion_point(field_get:group_formation.GroupConfig.door_pose)
-  return door_pose_ != NULL ? *door_pose_ : *default_instance_->door_pose_;
-}
-::group_formation::Pose* GroupConfig::mutable_door_pose() {
-  set_has_door_pose();
-  if (door_pose_ == NULL) {
-    door_pose_ = new ::group_formation::Pose;
-  }
-  // @@protoc_insertion_point(field_mutable:group_formation.GroupConfig.door_pose)
-  return door_pose_;
-}
-::group_formation::Pose* GroupConfig::release_door_pose() {
-  // @@protoc_insertion_point(field_release:group_formation.GroupConfig.door_pose)
-  clear_has_door_pose();
-  ::group_formation::Pose* temp = door_pose_;
-  door_pose_ = NULL;
-  return temp;
-}
-void GroupConfig::set_allocated_door_pose(::group_formation::Pose* door_pose) {
-  delete door_pose_;
-  door_pose_ = door_pose;
-  if (door_pose) {
-    set_has_door_pose();
-  } else {
-    clear_has_door_pose();
-  }
-  // @@protoc_insertion_point(field_set_allocated:group_formation.GroupConfig.door_pose)
-}
-
-// optional .group_formation.Pose tv_pose = 3;
-bool GroupConfig::has_tv_pose() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
-}
-void GroupConfig::set_has_tv_pose() {
-  _has_bits_[0] |= 0x00000004u;
-}
-void GroupConfig::clear_has_tv_pose() {
-  _has_bits_[0] &= ~0x00000004u;
-}
-void GroupConfig::clear_tv_pose() {
-  if (tv_pose_ != NULL) tv_pose_->::group_formation::Pose::Clear();
-  clear_has_tv_pose();
-}
-const ::group_formation::Pose& GroupConfig::tv_pose() const {
-  // @@protoc_insertion_point(field_get:group_formation.GroupConfig.tv_pose)
-  return tv_pose_ != NULL ? *tv_pose_ : *default_instance_->tv_pose_;
-}
-::group_formation::Pose* GroupConfig::mutable_tv_pose() {
-  set_has_tv_pose();
-  if (tv_pose_ == NULL) {
-    tv_pose_ = new ::group_formation::Pose;
-  }
-  // @@protoc_insertion_point(field_mutable:group_formation.GroupConfig.tv_pose)
-  return tv_pose_;
-}
-::group_formation::Pose* GroupConfig::release_tv_pose() {
-  // @@protoc_insertion_point(field_release:group_formation.GroupConfig.tv_pose)
-  clear_has_tv_pose();
-  ::group_formation::Pose* temp = tv_pose_;
-  tv_pose_ = NULL;
-  return temp;
-}
-void GroupConfig::set_allocated_tv_pose(::group_formation::Pose* tv_pose) {
-  delete tv_pose_;
-  tv_pose_ = tv_pose;
-  if (tv_pose) {
-    set_has_tv_pose();
-  } else {
-    clear_has_tv_pose();
-  }
-  // @@protoc_insertion_point(field_set_allocated:group_formation.GroupConfig.tv_pose)
-}
-
-// repeated .group_formation.Robot robot = 4;
+// repeated .group_formation.Robot robot = 1;
 int GroupConfig::robot_size() const {
   return robot_.size();
 }
@@ -2046,6 +2159,66 @@ const ::google::protobuf::RepeatedPtrField< ::group_formation::Robot >&
 GroupConfig::robot() const {
   // @@protoc_insertion_point(field_list:group_formation.GroupConfig.robot)
   return robot_;
+}
+
+// repeated .group_formation.Formation formation = 2;
+int GroupConfig::formation_size() const {
+  return formation_.size();
+}
+void GroupConfig::clear_formation() {
+  formation_.Clear();
+}
+const ::group_formation::Formation& GroupConfig::formation(int index) const {
+  // @@protoc_insertion_point(field_get:group_formation.GroupConfig.formation)
+  return formation_.Get(index);
+}
+::group_formation::Formation* GroupConfig::mutable_formation(int index) {
+  // @@protoc_insertion_point(field_mutable:group_formation.GroupConfig.formation)
+  return formation_.Mutable(index);
+}
+::group_formation::Formation* GroupConfig::add_formation() {
+  // @@protoc_insertion_point(field_add:group_formation.GroupConfig.formation)
+  return formation_.Add();
+}
+::google::protobuf::RepeatedPtrField< ::group_formation::Formation >*
+GroupConfig::mutable_formation() {
+  // @@protoc_insertion_point(field_mutable_list:group_formation.GroupConfig.formation)
+  return &formation_;
+}
+const ::google::protobuf::RepeatedPtrField< ::group_formation::Formation >&
+GroupConfig::formation() const {
+  // @@protoc_insertion_point(field_list:group_formation.GroupConfig.formation)
+  return formation_;
+}
+
+// repeated .group_formation.Pose goal = 3;
+int GroupConfig::goal_size() const {
+  return goal_.size();
+}
+void GroupConfig::clear_goal() {
+  goal_.Clear();
+}
+const ::group_formation::Pose& GroupConfig::goal(int index) const {
+  // @@protoc_insertion_point(field_get:group_formation.GroupConfig.goal)
+  return goal_.Get(index);
+}
+::group_formation::Pose* GroupConfig::mutable_goal(int index) {
+  // @@protoc_insertion_point(field_mutable:group_formation.GroupConfig.goal)
+  return goal_.Mutable(index);
+}
+::group_formation::Pose* GroupConfig::add_goal() {
+  // @@protoc_insertion_point(field_add:group_formation.GroupConfig.goal)
+  return goal_.Add();
+}
+::google::protobuf::RepeatedPtrField< ::group_formation::Pose >*
+GroupConfig::mutable_goal() {
+  // @@protoc_insertion_point(field_mutable_list:group_formation.GroupConfig.goal)
+  return &goal_;
+}
+const ::google::protobuf::RepeatedPtrField< ::group_formation::Pose >&
+GroupConfig::goal() const {
+  // @@protoc_insertion_point(field_list:group_formation.GroupConfig.goal)
+  return goal_;
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS

@@ -36,6 +36,7 @@ void protobuf_AddDesc_group_5fformation_2eproto();
 void protobuf_AssignDesc_group_5fformation_2eproto();
 void protobuf_ShutdownFile_group_5fformation_2eproto();
 
+class Formation;
 class GroupConfig;
 class Pose;
 class Robot;
@@ -340,6 +341,102 @@ class Robot : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
 };
 // -------------------------------------------------------------------
 
+class Formation : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:group_formation.Formation) */ {
+ public:
+  Formation();
+  virtual ~Formation();
+
+  Formation(const Formation& from);
+
+  inline Formation& operator=(const Formation& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Formation& default_instance();
+
+  void Swap(Formation* other);
+
+  // implements Message ----------------------------------------------
+
+  inline Formation* New() const { return New(NULL); }
+
+  Formation* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const Formation& from);
+  void MergeFrom(const Formation& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
+    return InternalSerializeWithCachedSizesToArray(false, output);
+  }
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(Formation* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .group_formation.Pose pose = 1;
+  int pose_size() const;
+  void clear_pose();
+  static const int kPoseFieldNumber = 1;
+  const ::group_formation::Pose& pose(int index) const;
+  ::group_formation::Pose* mutable_pose(int index);
+  ::group_formation::Pose* add_pose();
+  ::google::protobuf::RepeatedPtrField< ::group_formation::Pose >*
+      mutable_pose();
+  const ::google::protobuf::RepeatedPtrField< ::group_formation::Pose >&
+      pose() const;
+
+  // @@protoc_insertion_point(class_scope:group_formation.Formation)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::uint32 _has_bits_[1];
+  mutable int _cached_size_;
+  ::google::protobuf::RepeatedPtrField< ::group_formation::Pose > pose_;
+  friend void  protobuf_AddDesc_group_5fformation_2eproto();
+  friend void protobuf_AssignDesc_group_5fformation_2eproto();
+  friend void protobuf_ShutdownFile_group_5fformation_2eproto();
+
+  void InitAsDefaultInstance();
+  static Formation* default_instance_;
+};
+// -------------------------------------------------------------------
+
 class GroupConfig : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:group_formation.GroupConfig) */ {
  public:
   GroupConfig();
@@ -408,37 +505,10 @@ class GroupConfig : public ::google::protobuf::Message /* @@protoc_insertion_poi
 
   // accessors -------------------------------------------------------
 
-  // optional .group_formation.Pose start_pose = 1;
-  bool has_start_pose() const;
-  void clear_start_pose();
-  static const int kStartPoseFieldNumber = 1;
-  const ::group_formation::Pose& start_pose() const;
-  ::group_formation::Pose* mutable_start_pose();
-  ::group_formation::Pose* release_start_pose();
-  void set_allocated_start_pose(::group_formation::Pose* start_pose);
-
-  // optional .group_formation.Pose door_pose = 2;
-  bool has_door_pose() const;
-  void clear_door_pose();
-  static const int kDoorPoseFieldNumber = 2;
-  const ::group_formation::Pose& door_pose() const;
-  ::group_formation::Pose* mutable_door_pose();
-  ::group_formation::Pose* release_door_pose();
-  void set_allocated_door_pose(::group_formation::Pose* door_pose);
-
-  // optional .group_formation.Pose tv_pose = 3;
-  bool has_tv_pose() const;
-  void clear_tv_pose();
-  static const int kTvPoseFieldNumber = 3;
-  const ::group_formation::Pose& tv_pose() const;
-  ::group_formation::Pose* mutable_tv_pose();
-  ::group_formation::Pose* release_tv_pose();
-  void set_allocated_tv_pose(::group_formation::Pose* tv_pose);
-
-  // repeated .group_formation.Robot robot = 4;
+  // repeated .group_formation.Robot robot = 1;
   int robot_size() const;
   void clear_robot();
-  static const int kRobotFieldNumber = 4;
+  static const int kRobotFieldNumber = 1;
   const ::group_formation::Robot& robot(int index) const;
   ::group_formation::Robot* mutable_robot(int index);
   ::group_formation::Robot* add_robot();
@@ -447,22 +517,39 @@ class GroupConfig : public ::google::protobuf::Message /* @@protoc_insertion_poi
   const ::google::protobuf::RepeatedPtrField< ::group_formation::Robot >&
       robot() const;
 
+  // repeated .group_formation.Formation formation = 2;
+  int formation_size() const;
+  void clear_formation();
+  static const int kFormationFieldNumber = 2;
+  const ::group_formation::Formation& formation(int index) const;
+  ::group_formation::Formation* mutable_formation(int index);
+  ::group_formation::Formation* add_formation();
+  ::google::protobuf::RepeatedPtrField< ::group_formation::Formation >*
+      mutable_formation();
+  const ::google::protobuf::RepeatedPtrField< ::group_formation::Formation >&
+      formation() const;
+
+  // repeated .group_formation.Pose goal = 3;
+  int goal_size() const;
+  void clear_goal();
+  static const int kGoalFieldNumber = 3;
+  const ::group_formation::Pose& goal(int index) const;
+  ::group_formation::Pose* mutable_goal(int index);
+  ::group_formation::Pose* add_goal();
+  ::google::protobuf::RepeatedPtrField< ::group_formation::Pose >*
+      mutable_goal();
+  const ::google::protobuf::RepeatedPtrField< ::group_formation::Pose >&
+      goal() const;
+
   // @@protoc_insertion_point(class_scope:group_formation.GroupConfig)
  private:
-  inline void set_has_start_pose();
-  inline void clear_has_start_pose();
-  inline void set_has_door_pose();
-  inline void clear_has_door_pose();
-  inline void set_has_tv_pose();
-  inline void clear_has_tv_pose();
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::group_formation::Pose* start_pose_;
-  ::group_formation::Pose* door_pose_;
-  ::group_formation::Pose* tv_pose_;
   ::google::protobuf::RepeatedPtrField< ::group_formation::Robot > robot_;
+  ::google::protobuf::RepeatedPtrField< ::group_formation::Formation > formation_;
+  ::google::protobuf::RepeatedPtrField< ::group_formation::Pose > goal_;
   friend void  protobuf_AddDesc_group_5fformation_2eproto();
   friend void protobuf_AssignDesc_group_5fformation_2eproto();
   friend void protobuf_ShutdownFile_group_5fformation_2eproto();
@@ -888,141 +975,43 @@ inline void Robot::set_allocated_initial_pose(::group_formation::Pose* initial_p
 
 // -------------------------------------------------------------------
 
+// Formation
+
+// repeated .group_formation.Pose pose = 1;
+inline int Formation::pose_size() const {
+  return pose_.size();
+}
+inline void Formation::clear_pose() {
+  pose_.Clear();
+}
+inline const ::group_formation::Pose& Formation::pose(int index) const {
+  // @@protoc_insertion_point(field_get:group_formation.Formation.pose)
+  return pose_.Get(index);
+}
+inline ::group_formation::Pose* Formation::mutable_pose(int index) {
+  // @@protoc_insertion_point(field_mutable:group_formation.Formation.pose)
+  return pose_.Mutable(index);
+}
+inline ::group_formation::Pose* Formation::add_pose() {
+  // @@protoc_insertion_point(field_add:group_formation.Formation.pose)
+  return pose_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::group_formation::Pose >*
+Formation::mutable_pose() {
+  // @@protoc_insertion_point(field_mutable_list:group_formation.Formation.pose)
+  return &pose_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::group_formation::Pose >&
+Formation::pose() const {
+  // @@protoc_insertion_point(field_list:group_formation.Formation.pose)
+  return pose_;
+}
+
+// -------------------------------------------------------------------
+
 // GroupConfig
 
-// optional .group_formation.Pose start_pose = 1;
-inline bool GroupConfig::has_start_pose() const {
-  return (_has_bits_[0] & 0x00000001u) != 0;
-}
-inline void GroupConfig::set_has_start_pose() {
-  _has_bits_[0] |= 0x00000001u;
-}
-inline void GroupConfig::clear_has_start_pose() {
-  _has_bits_[0] &= ~0x00000001u;
-}
-inline void GroupConfig::clear_start_pose() {
-  if (start_pose_ != NULL) start_pose_->::group_formation::Pose::Clear();
-  clear_has_start_pose();
-}
-inline const ::group_formation::Pose& GroupConfig::start_pose() const {
-  // @@protoc_insertion_point(field_get:group_formation.GroupConfig.start_pose)
-  return start_pose_ != NULL ? *start_pose_ : *default_instance_->start_pose_;
-}
-inline ::group_formation::Pose* GroupConfig::mutable_start_pose() {
-  set_has_start_pose();
-  if (start_pose_ == NULL) {
-    start_pose_ = new ::group_formation::Pose;
-  }
-  // @@protoc_insertion_point(field_mutable:group_formation.GroupConfig.start_pose)
-  return start_pose_;
-}
-inline ::group_formation::Pose* GroupConfig::release_start_pose() {
-  // @@protoc_insertion_point(field_release:group_formation.GroupConfig.start_pose)
-  clear_has_start_pose();
-  ::group_formation::Pose* temp = start_pose_;
-  start_pose_ = NULL;
-  return temp;
-}
-inline void GroupConfig::set_allocated_start_pose(::group_formation::Pose* start_pose) {
-  delete start_pose_;
-  start_pose_ = start_pose;
-  if (start_pose) {
-    set_has_start_pose();
-  } else {
-    clear_has_start_pose();
-  }
-  // @@protoc_insertion_point(field_set_allocated:group_formation.GroupConfig.start_pose)
-}
-
-// optional .group_formation.Pose door_pose = 2;
-inline bool GroupConfig::has_door_pose() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
-}
-inline void GroupConfig::set_has_door_pose() {
-  _has_bits_[0] |= 0x00000002u;
-}
-inline void GroupConfig::clear_has_door_pose() {
-  _has_bits_[0] &= ~0x00000002u;
-}
-inline void GroupConfig::clear_door_pose() {
-  if (door_pose_ != NULL) door_pose_->::group_formation::Pose::Clear();
-  clear_has_door_pose();
-}
-inline const ::group_formation::Pose& GroupConfig::door_pose() const {
-  // @@protoc_insertion_point(field_get:group_formation.GroupConfig.door_pose)
-  return door_pose_ != NULL ? *door_pose_ : *default_instance_->door_pose_;
-}
-inline ::group_formation::Pose* GroupConfig::mutable_door_pose() {
-  set_has_door_pose();
-  if (door_pose_ == NULL) {
-    door_pose_ = new ::group_formation::Pose;
-  }
-  // @@protoc_insertion_point(field_mutable:group_formation.GroupConfig.door_pose)
-  return door_pose_;
-}
-inline ::group_formation::Pose* GroupConfig::release_door_pose() {
-  // @@protoc_insertion_point(field_release:group_formation.GroupConfig.door_pose)
-  clear_has_door_pose();
-  ::group_formation::Pose* temp = door_pose_;
-  door_pose_ = NULL;
-  return temp;
-}
-inline void GroupConfig::set_allocated_door_pose(::group_formation::Pose* door_pose) {
-  delete door_pose_;
-  door_pose_ = door_pose;
-  if (door_pose) {
-    set_has_door_pose();
-  } else {
-    clear_has_door_pose();
-  }
-  // @@protoc_insertion_point(field_set_allocated:group_formation.GroupConfig.door_pose)
-}
-
-// optional .group_formation.Pose tv_pose = 3;
-inline bool GroupConfig::has_tv_pose() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
-}
-inline void GroupConfig::set_has_tv_pose() {
-  _has_bits_[0] |= 0x00000004u;
-}
-inline void GroupConfig::clear_has_tv_pose() {
-  _has_bits_[0] &= ~0x00000004u;
-}
-inline void GroupConfig::clear_tv_pose() {
-  if (tv_pose_ != NULL) tv_pose_->::group_formation::Pose::Clear();
-  clear_has_tv_pose();
-}
-inline const ::group_formation::Pose& GroupConfig::tv_pose() const {
-  // @@protoc_insertion_point(field_get:group_formation.GroupConfig.tv_pose)
-  return tv_pose_ != NULL ? *tv_pose_ : *default_instance_->tv_pose_;
-}
-inline ::group_formation::Pose* GroupConfig::mutable_tv_pose() {
-  set_has_tv_pose();
-  if (tv_pose_ == NULL) {
-    tv_pose_ = new ::group_formation::Pose;
-  }
-  // @@protoc_insertion_point(field_mutable:group_formation.GroupConfig.tv_pose)
-  return tv_pose_;
-}
-inline ::group_formation::Pose* GroupConfig::release_tv_pose() {
-  // @@protoc_insertion_point(field_release:group_formation.GroupConfig.tv_pose)
-  clear_has_tv_pose();
-  ::group_formation::Pose* temp = tv_pose_;
-  tv_pose_ = NULL;
-  return temp;
-}
-inline void GroupConfig::set_allocated_tv_pose(::group_formation::Pose* tv_pose) {
-  delete tv_pose_;
-  tv_pose_ = tv_pose;
-  if (tv_pose) {
-    set_has_tv_pose();
-  } else {
-    clear_has_tv_pose();
-  }
-  // @@protoc_insertion_point(field_set_allocated:group_formation.GroupConfig.tv_pose)
-}
-
-// repeated .group_formation.Robot robot = 4;
+// repeated .group_formation.Robot robot = 1;
 inline int GroupConfig::robot_size() const {
   return robot_.size();
 }
@@ -1052,7 +1041,69 @@ GroupConfig::robot() const {
   return robot_;
 }
 
+// repeated .group_formation.Formation formation = 2;
+inline int GroupConfig::formation_size() const {
+  return formation_.size();
+}
+inline void GroupConfig::clear_formation() {
+  formation_.Clear();
+}
+inline const ::group_formation::Formation& GroupConfig::formation(int index) const {
+  // @@protoc_insertion_point(field_get:group_formation.GroupConfig.formation)
+  return formation_.Get(index);
+}
+inline ::group_formation::Formation* GroupConfig::mutable_formation(int index) {
+  // @@protoc_insertion_point(field_mutable:group_formation.GroupConfig.formation)
+  return formation_.Mutable(index);
+}
+inline ::group_formation::Formation* GroupConfig::add_formation() {
+  // @@protoc_insertion_point(field_add:group_formation.GroupConfig.formation)
+  return formation_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::group_formation::Formation >*
+GroupConfig::mutable_formation() {
+  // @@protoc_insertion_point(field_mutable_list:group_formation.GroupConfig.formation)
+  return &formation_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::group_formation::Formation >&
+GroupConfig::formation() const {
+  // @@protoc_insertion_point(field_list:group_formation.GroupConfig.formation)
+  return formation_;
+}
+
+// repeated .group_formation.Pose goal = 3;
+inline int GroupConfig::goal_size() const {
+  return goal_.size();
+}
+inline void GroupConfig::clear_goal() {
+  goal_.Clear();
+}
+inline const ::group_formation::Pose& GroupConfig::goal(int index) const {
+  // @@protoc_insertion_point(field_get:group_formation.GroupConfig.goal)
+  return goal_.Get(index);
+}
+inline ::group_formation::Pose* GroupConfig::mutable_goal(int index) {
+  // @@protoc_insertion_point(field_mutable:group_formation.GroupConfig.goal)
+  return goal_.Mutable(index);
+}
+inline ::group_formation::Pose* GroupConfig::add_goal() {
+  // @@protoc_insertion_point(field_add:group_formation.GroupConfig.goal)
+  return goal_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::group_formation::Pose >*
+GroupConfig::mutable_goal() {
+  // @@protoc_insertion_point(field_mutable_list:group_formation.GroupConfig.goal)
+  return &goal_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::group_formation::Pose >&
+GroupConfig::goal() const {
+  // @@protoc_insertion_point(field_list:group_formation.GroupConfig.goal)
+  return goal_;
+}
+
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

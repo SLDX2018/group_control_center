@@ -1,60 +1,210 @@
 
-start_pose {
-  x: 6.14
-  y: 4.45
-  z: 0
-
-  roll:  0
-  pitch: 0
-  yaw:   0
-}
-
-door_pose {
-  x: 3.4
-  y: 2.7
-  z: 0
-
-  roll:  0
-  pitch: 0
-  yaw:   0
-}
-
-tv_pose {
-  x: 0
-  y: 3.2
-  z: 0
-
-  roll:  0
-  pitch: 0
-  yaw:   0
-}
 
 robot {
-  robot_name: "huanyu"
-  goal_pose_topic: "/huanyu/move_base_simple/goal"
-  goal_frame_id: "huanyu/map"
-
-  initial_pose_topic: "/huanyu/initialpose"
+  robot_name: "sldx3"
+  goal_pose_topic: "/sldx3/move_base_simple/goal"
+  goal_frame_id: "/sldx3/map"
+  
+  initial_pose_topic: "/sldx3/initialpose"
   initial_pose: {
-    x: 0
-    y: 1
-    z: 0
-    yaw: 3
+  x : 2.812
+  y : 4.415
+  z : 0
+
+  yaw : 0
   }
 }
 
 robot {
   robot_name: "sldx"
-  goal_pose_topic: "/sldx/move_base_simple/goal2"
+  goal_pose_topic: "/sldx/move_base_simple/goal"
   goal_frame_id: "/sldx/map"
   
   initial_pose_topic: "/sldx/initialpose"
   initial_pose: {
-    x: 1
+  x : 3.369
+  y : 1.187
+  z : 0
+
+  yaw : 0
+  }
+}
+
+robot {
+  robot_name: "sldx5"
+  goal_pose_topic: "/sldx5/move_base_simple/goal"
+  goal_frame_id: "/sldx5/map"
+  
+  initial_pose_topic: "/sldx5/initialpose"
+  initial_pose: {
+  x : 8.874
+  y :  2.702
+  z : 0
+
+  yaw : 0
+  }
+}
+
+formation {
+  pose: {
+    x: -1
+    y: 0.6
+    z: 0
+
+    roll:  0
+    pitch: 0
+    yaw:   0
+  }
+  pose: {
+    x: -1
+    y: -0.6
+    z: 0
+
+    roll:  0
+    pitch: 0
+    yaw:   0
+  }
+}
+
+formation {
+  pose: {
+    x: 0
+    y: 0.6
+    z: 0
+
+    roll:  0
+    pitch: 0
+    yaw:   0
+  }
+  pose: {
+    x: 0
+    y: -0.6
+    z: 0
+
+    roll:  0
+    pitch: 0
+    yaw:   0
+  }
+}
+
+formation {
+  pose: {
+    x: -1
     y: 0
     z: 0
-    yaw: 3
+
+    roll:  0
+    pitch: 0
+    yaw:   0
+  }
+  pose: {
+    x: -2
+    y: 0
+    z: 0
+
+    roll:  0
+    pitch: 0
+    yaw:   0
   }
 }
 
 
+
+
+
+goal {
+  x : 6.569
+  y : 5.787
+  z : 0
+
+  yaw : 1.641
+}
+
+goal {
+  x : 2.812
+  y : 4.415
+  z : 0
+
+  yaw : 2.157
+}
+
+goal {
+  x : 3.369
+  y : 1.187
+  z : 0
+
+  yaw : -2.009
+}
+
+goal {
+  x : 7.744
+  y :  -0.825
+  z : 0
+
+  yaw : -0.899
+}
+
+goal {
+  x : 8.874
+  y :  2.702
+  z : 0
+
+  yaw : 0.122
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+goal {
+  x : 18.552
+  y : -3.061
+  z : 0
+
+  yaw : -0.298
+}
+
+goal {
+  x : 18.813
+  y : 0.478
+  z : 0
+
+  yaw : 1.417
+}
+
+goal {
+  x : 15.842
+  y : 1.162
+  z : 0
+
+  yaw : 2.831
+}
+
+goal {
+  x : 12.549
+  y :  -1.934
+  z : 0
+
+  yaw : -2.700
+}
+
+goal {
+  x : 15.584
+  y :  -4.428
+  z : 0
+
+  yaw : -1.737
+}

@@ -32,22 +32,23 @@ rrts_protobuf_generate_cpp(${CMAKE_CURRENT_SOURCE_DIR}/proto
 
 catkin_package()
 
-add_executable(unit_control_node
-  ${GroupFormationProtoHds}
-  ${GroupFormationProtoSrc}
-  unit_control.cpp
-)
+# add_executable(unit_control_node
+#   ${GroupFormationProtoHds}
+#   ${GroupFormationProtoSrc}
+#   unit_control.cpp
+# )
 
-target_link_libraries(unit_control_node
-  PRIVATE
-  ${catkin_LIBRARIES}
-  ${PROTOBUF_LIBRARIES}
-)
+# target_link_libraries(unit_control_node
+#   PRIVATE
+#   ${catkin_LIBRARIES}
+#   ${PROTOBUF_LIBRARIES}
+# )
 
 
 add_executable(group_control_node
   ${GroupFormationProtoHds}
   ${GroupFormationProtoSrc}
+  unit_control.cpp
   group_control.cpp
 )
 

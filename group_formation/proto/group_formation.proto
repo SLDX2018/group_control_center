@@ -20,9 +20,13 @@ message Robot {
     optional Pose initial_pose = 5;
 }
 
+message Formation {
+    repeated Pose pose = 1;
+}
+
 message GroupConfig {
-    optional Pose start_pose = 1;
-    optional Pose door_pose = 2;
-    optional Pose tv_pose = 3;
-    repeated Robot robot = 4;
+    repeated Robot robot = 1;
+    repeated Formation formation = 2;
+
+    repeated Pose goal = 3;
 }
